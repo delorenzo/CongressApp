@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#F50057</color>
+    <color name="colorAccentDem">#3D5AFE</color>
+
+    <!-- material design text color guidelines -->
+    <!-- @see https://www.google.com/design/spec/style/color.html#color-text-background-colors -->
+    <!-- transparency values are 0-255, represented in hex -->
+    <color name="primary_text_dark">#DD000000</color> <!-- 87% -->
+    <color name="secondary_text_dark">#89000000</color> <!-- 54% -->
+    <color name="disabled_text_dark">#62000000</color> <!-- 38% -->
+    <color name="divider_color_dark">#1E000000</color> <!-- 12% -->
+
+    <color name="primary_text_light">#FFFFFFFF</color> <!-- 100% -->
+    <color name="secondary_text_light">#B2FFFFFF</color> <!-- 70% -->
+    <color name="disabled_text_light">#80FFFFFF</color> <!-- 50% -->
+    <color name="divider_color_light">#1EFFFFFF</color> <!-- 12% -->
+</resources>
