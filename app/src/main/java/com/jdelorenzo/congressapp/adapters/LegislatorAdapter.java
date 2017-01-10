@@ -46,17 +46,16 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
     public void onBindViewHolder(LegislatorAdapterViewHolder holder, int position) {
         if (items == null || items.size() == 0) return;
         Legislator legislator = items.get(position);
-        holder.titleView.setText(legislator.title);
         holder.nameView.setText(String.format(Locale.getDefault(),
-                        context.getString(R.string.legislator_name_format),
-                        legislator.firstName,
-                        legislator.lastName));
-        holder.party.setText(legislator.party);
-        holder.partyIconView.setText(legislator.party);
-        holder.partyIconView.setBackground(legislator.isDemocrat() ?
+                context.getString(R.string.legislator_name_format),
+                legislator.title,
+                legislator.firstName,
+                legislator.lastName,
+                legislator.party));
+        holder.iconView.setText(legislator.state);
+        holder.iconView.setBackground(legislator.isDemocrat() ?
                 ContextCompat.getDrawable(context, R.drawable.circle_d) :
                 ContextCompat.getDrawable(context, R.drawable.circle_r));
-        holder.stateView.setText(legislator.state);
     }
 
     @Override
@@ -72,11 +71,7 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
 
     class LegislatorAdapterViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.name) TextView nameView;
-        @BindView(R.id.state) TextView stateView;
-        @BindView(R.id.partyIcon) TextView partyIconView;
-        @BindView(R.id.party) TextView party;
-        @BindView(R.id.title) TextView titleView;
-
+        @BindView(R.id.stateIcon) TextView iconView;
         LegislatorAdapterViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

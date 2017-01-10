@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         DaggerMainComponent.builder()
                 .mainPresenterModule(new MainPresenterModule(this))
                 .netComponent(((CongressApplication)getApplication()).getNetComponent())
