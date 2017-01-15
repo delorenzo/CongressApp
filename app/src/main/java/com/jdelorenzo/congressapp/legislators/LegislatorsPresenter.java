@@ -1,12 +1,9 @@
-package com.jdelorenzo.congressapp.main;
+package com.jdelorenzo.congressapp.legislators;
 
 import android.util.Log;
 
-import com.jdelorenzo.congressapp.model.Legislator;
 import com.jdelorenzo.congressapp.model.LegislatorResult;
 import com.jdelorenzo.congressapp.network.SunlightCongressEndpoint;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -14,13 +11,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainPresenter implements MainContract.Presenter {
+public class LegislatorsPresenter implements LegislatorsContract.Presenter {
     private final SunlightCongressEndpoint endpoint;
-    private final MainContract.View mainView;
-    private static final String LOG_TAG = MainPresenter.class.getSimpleName();
+    private final LegislatorsContract.View mainView;
+    private static final String LOG_TAG = LegislatorsPresenter.class.getSimpleName();
 
     @Inject
-    MainPresenter(SunlightCongressEndpoint endpoint, MainContract.View mainView) {
+    LegislatorsPresenter(SunlightCongressEndpoint endpoint, LegislatorsContract.View mainView) {
         this.endpoint = endpoint;
         this.mainView = mainView;
     }
@@ -48,7 +45,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void performSearch(int zipCode) {
+    public void getLegislatorsByZip(int zipCode) {
         mainView.showLoadingIndicator();
         endpoint.getLegislatorsByZip(zipCode).enqueue(new Callback<LegislatorResult>() {
             @Override

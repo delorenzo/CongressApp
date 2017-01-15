@@ -1,10 +1,10 @@
-package com.jdelorenzo.congressapp.main;
+package com.jdelorenzo.congressapp.legislators;
 
 import com.jdelorenzo.congressapp.model.Legislator;
 
 import java.util.List;
 
-public interface MainContract {
+public interface LegislatorsContract {
     interface View {
         void displaySearchResults(List<Legislator> results);
         void showLoadingIndicator();
@@ -12,7 +12,7 @@ public interface MainContract {
     }
 
     interface Presenter {
-        void performSearch(int zipCode);
+        void getLegislatorsByZip(int zipCode);
         void getAllLegislators();
     }
 }

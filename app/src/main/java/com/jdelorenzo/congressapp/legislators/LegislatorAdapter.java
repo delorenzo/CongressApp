@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.adapters;
+package com.jdelorenzo.congressapp.legislators;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -50,12 +50,12 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
                 context.getString(R.string.legislator_name_format),
                 legislator.title,
                 legislator.firstName,
-                legislator.lastName,
-                legislator.party));
+                legislator.lastName));
         holder.iconView.setText(legislator.state);
         holder.iconView.setBackground(legislator.isDemocrat() ?
                 ContextCompat.getDrawable(context, R.drawable.circle_d) :
                 ContextCompat.getDrawable(context, R.drawable.circle_r));
+        holder.partyView.setText(legislator.party);
     }
 
     @Override
@@ -72,6 +72,7 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
     class LegislatorAdapterViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.name) TextView nameView;
         @BindView(R.id.stateIcon) TextView iconView;
+        @BindView(R.id.party) TextView partyView;
         LegislatorAdapterViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
