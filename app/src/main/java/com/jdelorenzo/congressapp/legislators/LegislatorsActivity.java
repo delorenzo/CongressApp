@@ -2,13 +2,22 @@ package com.jdelorenzo.congressapp.legislators;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.jdelorenzo.congressapp.CongressApplication;
 import com.jdelorenzo.congressapp.R;
+import com.jdelorenzo.congressapp.model.Legislator;
+import com.jdelorenzo.congressapp.pager.FragmentlessPagerAdapter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,26 +26,24 @@ import butterknife.ButterKnife;
 
 public class LegislatorsActivity extends AppCompatActivity {
     @BindView(R.id.pager) ViewPager viewPager;
-    @Inject LegislatorsPresenter legislatorsPresenter;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_legislators);
         ButterKnife.bind(this);
-        LegislatorsFragment fragment = (LegislatorsFragment) getFragmentManager().findFragmentById(R.id.fragment_legislator_list);
-        if (fragment == null) {
-            fragment = new LegislatorsFragment();
-            getFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.container, fragment)
-                    .commit();
-        }
-        DaggerLegislatorsComponent.builder()
-                .legislatorsPresenterModule(new LegislatorsPresenterModule(fragment))
-                .netComponent(((CongressApplication)getApplication()).getNetComponent())
-                .build()
-                .inject(this);
+        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+             @Override
+             public Fragment getItem(int position) {
+                 return LegislatorsFragment.newInstance(LegislatorFilter.values()[position]);
+             }
+
+             @Override
+             public int getCount() {
+                 return LegislatorFilter.values().length;
+             }
+         });
     }
 
     @Override
@@ -73,6 +80,4 @@ public class LegislatorsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

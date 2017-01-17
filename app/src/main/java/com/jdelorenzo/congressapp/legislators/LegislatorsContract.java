@@ -12,6 +12,8 @@ public interface LegislatorsContract {
     }
 
     interface Presenter {
+        void getMyLegislators();
+        void getLegislatorsByFilter(LegislatorFilter filter);
         void getLegislatorsByZip(int zipCode);
         void getAllLegislators();
     }

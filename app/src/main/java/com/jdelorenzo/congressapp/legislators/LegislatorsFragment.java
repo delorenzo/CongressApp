@@ -1,9 +1,9 @@
 package com.jdelorenzo.congressapp.legislators;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.jdelorenzo.congressapp.CongressApplication;
 import com.jdelorenzo.congressapp.R;
 import com.jdelorenzo.congressapp.model.Legislator;
 
@@ -28,14 +29,33 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
     @BindView(R.id.progress_bar) ProgressBar progressBar;
     private LegislatorAdapter adapter;
     private LegislatorsPresenter mPresenter;
+    private static final String ARG_FILTER = "filter";
+
+    public static LegislatorsFragment newInstance(LegislatorFilter filter) {
+        LegislatorsFragment fragment = new LegislatorsFragment();
+        Bundle b = new Bundle();
+        b.putSerializable(ARG_FILTER, filter);
+        fragment.setArguments(b);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DaggerLegislatorsComponent.builder()
+                .legislatorsPresenterModule(new LegislatorsPresenterModule(this))
+                .netComponent(((CongressApplication) getContext()).getNetComponent())
+                .build()
+                .inject(this);
+
+        if (savedInstanceState != null) return;
         adapter = new LegislatorAdapter(getActivity(), legislatorEmptyView);
         legislatorListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         legislatorListView.setAdapter(adapter);
-        legislatorsPresenter.getAllLegislators();
+        Bundle args = getArguments();
+        if (args.containsKey(ARG_FILTER)) {
+            legislatorsPresenter.getLegislatorsByFilter((LegislatorFilter)args.getSerializable(ARG_FILTER));
+        }
     }
 
     @Nullable

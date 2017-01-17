@@ -2,6 +2,8 @@ package com.jdelorenzo.congressapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import javax.inject.Singleton;
 
@@ -27,4 +29,8 @@ public class AppModule {
     Context providesContext() {
         return mApplication.getApplicationContext();
     }
+
+    @Provides
+    @Singleton
+    SharedPreferences providesSharedPreferences() { return PreferenceManager.getDefaultSharedPreferences(mApplication); }
 }
