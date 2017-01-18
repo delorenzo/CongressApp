@@ -21,6 +21,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public final class LegislatorsFragment extends Fragment implements LegislatorsContract.View {
     @Inject LegislatorsPresenter legislatorsPresenter;
@@ -29,6 +31,7 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
     @BindView(R.id.progress_bar) ProgressBar progressBar;
     private LegislatorAdapter adapter;
     private LegislatorsPresenter mPresenter;
+    private Unbinder unbinder;
     private static final String ARG_FILTER = "filter";
 
     public static LegislatorsFragment newInstance(LegislatorFilter filter) {
@@ -44,11 +47,16 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
         super.onCreate(savedInstanceState);
         DaggerLegislatorsComponent.builder()
                 .legislatorsPresenterModule(new LegislatorsPresenterModule(this))
-                .netComponent(((CongressApplication) getContext()).getNetComponent())
+                .netComponent(((CongressApplication) getContext().getApplicationContext()).getNetComponent())
                 .build()
                 .inject(this);
+    }
 
-        if (savedInstanceState != null) return;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.legislator_list, container, false);
+        unbinder = ButterKnife.bind(this, rootView);
         adapter = new LegislatorAdapter(getActivity(), legislatorEmptyView);
         legislatorListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         legislatorListView.setAdapter(adapter);
@@ -56,13 +64,6 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
         if (args.containsKey(ARG_FILTER)) {
             legislatorsPresenter.getLegislatorsByFilter((LegislatorFilter)args.getSerializable(ARG_FILTER));
         }
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.legislator_list, container, false);
-
         return rootView;
     }
 

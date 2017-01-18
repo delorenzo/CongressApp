@@ -43,7 +43,13 @@ public class LegislatorsActivity extends AppCompatActivity {
              public int getCount() {
                  return LegislatorFilter.values().length;
              }
-         });
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                int titleResource = LegislatorFilter.values()[position].getTitleId();
+                return getString(titleResource);
+            }
+        });
     }
 
     @Override
