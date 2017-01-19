@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators;
+package com.jdelorenzo.congressapp.legislators.list;
 
 import android.content.Intent;
 import android.os.Bundle;

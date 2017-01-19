@@ -6,10 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jdelorenzo.congressapp.legislators.LegislatorFilter;
-import com.jdelorenzo.congressapp.model.Legislator;
-
-import java.util.List;
+import com.jdelorenzo.congressapp.legislators.list.LegislatorFilter;
 
 /**
  * {@link PagerAdapter} that uses Views instead of Fragments.

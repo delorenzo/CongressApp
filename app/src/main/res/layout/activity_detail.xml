@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context="com.jdelorenzo.congressapp.legislators.LegislatorsActivity">
+tools:context="com.jdelorenzo.congressapp.legislators.detail.LegislatorDetailActivity">
 
 <android.support.design.widget.AppBarLayout
     android:id="@+id/app_bar"
@@ -31,6 +31,69 @@ tools:context="com.jdelorenzo.congressapp.legislators.LegislatorsActivity">
 
     </android.support.design.widget.CollapsingToolbarLayout>
 </android.support.design.widget.AppBarLayout>
+
+<LinearLayout
+    android:id="@+id/main_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        tools:text="Andrew Jackson"
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="Republican"
+        android:id="@+id/party"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="House District 5"
+        android:id="@+id/chamber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="Feb 2016-Mar 2016"
+        android:id="@+id/term"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="name@email.com"
+        android:id="@+id/legislator_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        tools:text="555-555-5555"
+        android:inputType="phone"
+        android:id="@+id/legislator_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/website"
+        android:inputType="textUri"
+        tools:text="legislator.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/twitter"
+        android:inputType="textUri"
+        tools:text="twitter.com/2323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/facebook"
+        android:inputType="textUri"
+        tools:text="facebook.com/2323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/youtube"
+        android:inputType="textUri"
+        tools:text="youtube.com/2323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
 
 <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab"

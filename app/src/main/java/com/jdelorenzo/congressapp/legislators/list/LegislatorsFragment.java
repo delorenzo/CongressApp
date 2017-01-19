@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators;
+package com.jdelorenzo.congressapp.legislators.list;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -84,5 +84,11 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
 
     public void setPresenter(@NonNull LegislatorsPresenter legislatorsPresenter) {
         this.legislatorsPresenter = legislatorsPresenter;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

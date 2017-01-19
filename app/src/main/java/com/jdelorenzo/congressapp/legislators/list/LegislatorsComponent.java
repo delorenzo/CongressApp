@@ -1,7 +1,5 @@
-package com.jdelorenzo.congressapp.legislators;
+package com.jdelorenzo.congressapp.legislators.list;
 
-import com.jdelorenzo.congressapp.ActivityScope;
-import com.jdelorenzo.congressapp.AppModule;
 import com.jdelorenzo.congressapp.FragmentScope;
 import com.jdelorenzo.congressapp.network.NetComponent;
 

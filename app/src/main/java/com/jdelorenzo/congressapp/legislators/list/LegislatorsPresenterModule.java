@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators;
+package com.jdelorenzo.congressapp.legislators.list;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators;
+package com.jdelorenzo.congressapp.legislators.list;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -47,8 +47,8 @@ public class LegislatorsPresenter implements LegislatorsContract.Presenter {
 
     @Override
     public void getMyLegislators() {
-        int zipCode = sharedPreferences.getInt(context.getString(R.string.shared_pref_key_zipcode), 0);
-        getLegislatorsByZip(zipCode);
+        //int zipCode = sharedPreferences.getInt(context.getString(R.string.shared_pref_key_zipcode), 0);
+        getLegislatorsByZip(15217);
     }
 
     @Override
