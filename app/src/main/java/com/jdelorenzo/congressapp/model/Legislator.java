@@ -1,7 +1,9 @@
 package com.jdelorenzo.congressapp.model;
 
+import java.io.Serializable;
+
 /** Legislator model.  {@see https://sunlightlabs.github.io/congress/legislators.html} */
-public class Legislator {
+public class Legislator implements Serializable {
     /** Identifier for this member in various Congressional sources. Originally taken from the
      * Congressional Biographical Directory, but used in many places.
      * If you’re going to pick one ID as a Congressperson’s unique ID, use this. */

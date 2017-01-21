@@ -16,19 +16,26 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * {@link android.support.v7.widget.RecyclerView.Adapter} for {@link Legislator} items
  */
 
-public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.LegislatorAdapterViewHolder> {
+class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.LegislatorAdapterViewHolder> {
     private List<Legislator> items;
     private Context context;
     private View emptyView;
+    final private LegislatorAdapterOnClickHandler clickHandler;
 
-    public LegislatorAdapter(Context context, View emptyView) {
+    LegislatorAdapter(Context context, View emptyView, LegislatorAdapterOnClickHandler handler) {
         this.context = context;
         this.emptyView = emptyView;
+        this.clickHandler = handler;
+    }
+
+    interface LegislatorAdapterOnClickHandler {
+        void onClick(Legislator legislator);
     }
 
     @Override
@@ -36,7 +43,7 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
         return items == null ? 0: items.size();
     }
 
-    public void setItems(List<Legislator> items) {
+    void setItems(List<Legislator> items) {
         this.items = items;
         emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
         notifyDataSetChanged();
@@ -50,7 +57,8 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
                 context.getString(R.string.legislator_name_format),
                 legislator.title,
                 legislator.firstName,
-                legislator.lastName));
+                legislator.lastName,
+                legislator.nameSuffix != null ? legislator.nameSuffix : ""));
         holder.iconView.setText(legislator.state);
         holder.iconView.setBackground(legislator.isDemocrat() ?
                 ContextCompat.getDrawable(context, R.drawable.circle_d) :
@@ -73,9 +81,15 @@ public class LegislatorAdapter extends RecyclerView.Adapter<LegislatorAdapter.Le
         @BindView(R.id.name) TextView nameView;
         @BindView(R.id.stateIcon) TextView iconView;
         @BindView(R.id.party) TextView partyView;
+
         LegislatorAdapterViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+
+        @OnClick(R.id.legislator_item)
+        void onClick() {
+            clickHandler.onClick(items.get(getAdapterPosition()));
         }
     }
 }

@@ -7,7 +7,22 @@
     <string name="title_activity_detail">Legislator Detail</string>
 
     <string name="legislator_name_format">
-        <xliff:g id="title">%1$s</xliff:g>. <xliff:g id="firstName">%2$s</xliff:g> <xliff:g id="lastName">%3$s</xliff:g>
+        <xliff:g id="title">%1$s</xliff:g>. <xliff:g id="firstName">%2$s</xliff:g> <xliff:g id="lastName">%3$s</xliff:g> <xliff:g id="nameSuffix">%4$s</xliff:g>
+    </string>
+    <string name="term_format">
+        <xliff:g id="termStart">%1$s</xliff:g> - <xliff:g id="termEnd">%2$s</xliff:g>
+    </string>
+    <string name="chamber_format">
+        <xliff:g id="chamber">%1$s</xliff:g> <xliff:g id="crpId">%2$s</xliff:g>
+    </string>
+    <string name="facebook_format">
+        https://facebook.com/<xliff:g id="facebook_id">%1$s</xliff:g>
+    </string>
+    <string name="youtube_format">
+        https://youtube.com/<xliff:g id="youtube_id">%1$s</xliff:g>
+    </string>
+    <string name="twitter_format">
+        http://twitter.com/<xliff:g id="twitter_id">%1$s</xliff:g>
     </string>
 
     <string name="tab_all">All</string>
@@ -16,4 +31,9 @@
 
     <string name="shared_pref_key_zipcode">zipcode</string>
     <string name="shared_pref_label_zipcode">Zipcode</string>
+    <string name="contact_info">Contact Info:  </string>
+
+    <string name="party_democrat">Democrat</string>
+    <string name="party_republican">Republican</string>
+    <string name="party_independent">Independent</string>
 </resources>

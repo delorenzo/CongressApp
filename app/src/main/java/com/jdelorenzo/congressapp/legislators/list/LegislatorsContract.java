@@ -4,7 +4,7 @@ import com.jdelorenzo.congressapp.model.Legislator;
 
 import java.util.List;
 
-public interface LegislatorsContract {
+interface LegislatorsContract {
     interface View {
         void displaySearchResults(List<Legislator> results);
         void showLoadingIndicator();
@@ -16,5 +16,6 @@ public interface LegislatorsContract {
         void getLegislatorsByFilter(LegislatorFilter filter);
         void getLegislatorsByZip(int zipCode);
         void getAllLegislators();
+        void onLegislatorSelected(Legislator legislator);
     }
 }

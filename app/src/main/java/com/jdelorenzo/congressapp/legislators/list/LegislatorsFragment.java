@@ -57,7 +57,12 @@ public final class LegislatorsFragment extends Fragment implements LegislatorsCo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.legislator_list, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        adapter = new LegislatorAdapter(getActivity(), legislatorEmptyView);
+        adapter = new LegislatorAdapter(getActivity(), legislatorEmptyView, new LegislatorAdapter.LegislatorAdapterOnClickHandler() {
+            @Override
+            public void onClick(Legislator legislator) {
+                legislatorsPresenter.onLegislatorSelected(legislator);
+            }
+        });
         legislatorListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         legislatorListView.setAdapter(adapter);
         Bundle args = getArguments();

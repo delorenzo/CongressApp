@@ -1,10 +1,13 @@
 package com.jdelorenzo.congressapp.legislators.list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.jdelorenzo.congressapp.R;
+import com.jdelorenzo.congressapp.legislators.detail.LegislatorDetailActivity;
+import com.jdelorenzo.congressapp.model.Legislator;
 import com.jdelorenzo.congressapp.model.LegislatorResult;
 import com.jdelorenzo.congressapp.network.SunlightCongressEndpoint;
 
@@ -14,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LegislatorsPresenter implements LegislatorsContract.Presenter {
+class LegislatorsPresenter implements LegislatorsContract.Presenter {
     private final Context context;
     private final SunlightCongressEndpoint endpoint;
     private final LegislatorsContract.View mainView;
@@ -93,5 +96,12 @@ public class LegislatorsPresenter implements LegislatorsContract.Presenter {
                 Log.e(LOG_TAG, "Call to retrieve legislators failed.");
             }
         });
+    }
+
+    @Override
+    public void onLegislatorSelected(Legislator legislator) {
+        Intent intent = new Intent(context, LegislatorDetailActivity.class);
+        intent.putExtra(LegislatorDetailActivity.EXTRA_LEGISLATOR, legislator);
+        context.startActivity(intent);
     }
 }
