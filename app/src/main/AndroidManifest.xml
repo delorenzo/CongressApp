@@ -24,7 +24,8 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".settings.AppCompatPreferenceActivity"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".legislators.list.LegislatorsActivity">
         </activity>
         <activity android:name=".legislators.detail.LegislatorDetailActivity"
             android:label="@string/title_activity_detail"
