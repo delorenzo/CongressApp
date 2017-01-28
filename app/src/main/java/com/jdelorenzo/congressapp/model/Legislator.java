@@ -31,7 +31,7 @@ public class Legislator implements Serializable {
     public String fax;
     /** A list of identifiers for this member as they appear in filings at the
      * Federal Election Commission. {@see http://fec.gov/}*/
-    public String fecIds;
+    public String[] fecIds;
     public String firstName;
     /** First letter of this member’s gender. “M” or “F”. */
     public String gender;

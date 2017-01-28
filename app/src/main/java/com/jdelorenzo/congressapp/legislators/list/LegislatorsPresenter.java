@@ -50,8 +50,11 @@ class LegislatorsPresenter implements LegislatorsContract.Presenter {
 
     @Override
     public void getMyLegislators() {
-        //int zipCode = sharedPreferences.getInt(context.getString(R.string.shared_pref_key_zipcode), 0);
-        getLegislatorsByZip(15217);
+        int zipCode = Integer.parseInt(
+                sharedPreferences.getString(
+                        context.getString(R.string.shared_pref_key_zipcode),
+                        "0"));
+        getLegislatorsByZip(zipCode);
     }
 
     @Override
@@ -71,7 +74,7 @@ class LegislatorsPresenter implements LegislatorsContract.Presenter {
             @Override
             public void onFailure(Call<LegislatorResult> call, Throwable t) {
                 mainView.hideLoadingIndicator();
-                Log.e(LOG_TAG, "Call to retrieve legislators failed.");
+                Log.e(LOG_TAG, "Call to retrieve legislators failed:  "+ t.getLocalizedMessage());
             }
         });
     }
@@ -93,7 +96,7 @@ class LegislatorsPresenter implements LegislatorsContract.Presenter {
             @Override
             public void onFailure(Call<LegislatorResult> call, Throwable t) {
                 mainView.hideLoadingIndicator();
-                Log.e(LOG_TAG, "Call to retrieve legislators failed.");
+                Log.e(LOG_TAG, "Call to retrieve legislators failed:  " + t.getLocalizedMessage());
             }
         });
     }
