@@ -1,9 +1,7 @@
 package com.jdelorenzo.congressapp.ui.legislators.detail;
 
 public interface LegislatorDetailContract {
-    interface View {
-    }
+  interface View {}
 
-    interface Presenter {
-    }
+  interface Presenter {}
 }

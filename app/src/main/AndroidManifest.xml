@@ -23,14 +23,15 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".settings.AppCompatPreferenceActivity"
+        <activity
+            android:name=".settings.AppCompatPreferenceActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".ui.legislators.list.LegislatorsActivity">
-        </activity>
-        <activity android:name=".ui.legislators.detail.LegislatorDetailActivity"
+            android:parentActivityName=".ui.legislators.list.LegislatorsActivity"></activity>
+        <activity
+            android:name=".ui.legislators.detail.LegislatorDetailActivity"
             android:label="@string/title_activity_detail"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".ui.legislators.list.LegislatorsActivity"/>
+            android:parentActivityName=".ui.legislators.list.LegislatorsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

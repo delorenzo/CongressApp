@@ -7,14 +7,14 @@ import com.jdelorenzo.congressapp.data.model.Legislator;
 import io.reactivex.Flowable;
 
 public class RemoteLegislatorDataSource implements LegislatorDataSource {
-    private final LegislatorDao legislatorDao;
+  private final LegislatorDao legislatorDao;
 
-    public RemoteLegislatorDataSource(LegislatorDao legislatorDao) {
-        this.legislatorDao = legislatorDao;
-    }
+  public RemoteLegislatorDataSource(LegislatorDao legislatorDao) {
+    this.legislatorDao = legislatorDao;
+  }
 
-    @Override
-    public Flowable<Legislator> getLegislator() {
-        return null;
-    }
+  @Override
+  public Flowable<Legislator> getLegislator() {
+    return null;
+  }
 }

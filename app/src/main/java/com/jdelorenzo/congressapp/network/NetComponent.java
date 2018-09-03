@@ -12,7 +12,9 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
-    SunlightCongressEndpoint provideEndpoint();
-    Context provideContext();
-    SharedPreferences provideSharedPreferences();
+  SunlightCongressEndpoint provideEndpoint();
+
+  Context provideContext();
+
+  SharedPreferences provideSharedPreferences();
 }

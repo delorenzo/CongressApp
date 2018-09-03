@@ -2,8 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
         android:inputType="number"
+        android:key="@string/shared_pref_key_zipcode"
         android:maxLength="5"
         android:maxLines="1"
-        android:key="@string/shared_pref_key_zipcode"
-        android:title="@string/shared_pref_label_zipcode"/>
+        android:title="@string/shared_pref_label_zipcode" />
 </PreferenceScreen>

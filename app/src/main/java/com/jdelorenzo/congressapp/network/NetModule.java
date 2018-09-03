@@ -18,49 +18,49 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetModule {
-    private final String mBaseUrl;
-    private static final int CACHE_SIZE = 10485760; //10 MiB
+  private static final int CACHE_SIZE = 10485760; // 10 MiB
+  private final String mBaseUrl;
 
-    public NetModule(String baseUrl) {
-        this.mBaseUrl = baseUrl;
-    }
+  public NetModule(String baseUrl) {
+    this.mBaseUrl = baseUrl;
+  }
 
-    @Provides
-    @Singleton
-    Cache provideOkHttpCache(Application application) {
-        return new Cache(application.getCacheDir(), CACHE_SIZE);
-    }
+  @Provides
+  @Singleton
+  Cache provideOkHttpCache(Application application) {
+    return new Cache(application.getCacheDir(), CACHE_SIZE);
+  }
 
-    @Provides
-    @Singleton
-    Gson provideGson() {
-        return new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
-    }
+  @Provides
+  @Singleton
+  Gson provideGson() {
+    return new GsonBuilder()
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        .create();
+  }
 
-    @Provides
-    @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache) {
-        return new OkHttpClient.Builder()
-                .cache(cache)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
-    }
+  @Provides
+  @Singleton
+  OkHttpClient provideOkHttpClient(Cache cache) {
+    return new OkHttpClient.Builder()
+        .cache(cache)
+        .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .build();
+  }
 
-    @Provides
-    @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(mBaseUrl)
-                .client(okHttpClient)
-                .build();
-    }
+  @Provides
+  @Singleton
+  Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    return new Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .baseUrl(mBaseUrl)
+        .client(okHttpClient)
+        .build();
+  }
 
-    @Provides
-    @Singleton
-    SunlightCongressEndpoint provideEndpoint(Retrofit retrofit) {
-        return retrofit.create(SunlightCongressEndpoint.class);
-    }
+  @Provides
+  @Singleton
+  SunlightCongressEndpoint provideEndpoint(Retrofit retrofit) {
+    return retrofit.create(SunlightCongressEndpoint.class);
+  }
 }
