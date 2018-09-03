@@ -1,10 +1,10 @@
 package com.jdelorenzo.congressapp.network;
 
-import com.jdelorenzo.congressapp.model.Bill;
-import com.jdelorenzo.congressapp.model.Committee;
-import com.jdelorenzo.congressapp.model.District;
-import com.jdelorenzo.congressapp.model.Legislator;
-import com.jdelorenzo.congressapp.model.LegislatorResult;
+import com.jdelorenzo.congressapp.data.model.Bill;
+import com.jdelorenzo.congressapp.data.model.Committee;
+import com.jdelorenzo.congressapp.data.model.District;
+import com.jdelorenzo.congressapp.data.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.LegislatorResult;
 
 import java.util.List;
 

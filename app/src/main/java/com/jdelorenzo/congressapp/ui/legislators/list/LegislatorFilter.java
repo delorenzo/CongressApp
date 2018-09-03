@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators.list;
+package com.jdelorenzo.congressapp.ui.legislators.list;
 
 import com.jdelorenzo.congressapp.R;
 

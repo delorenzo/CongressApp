@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators.list;
+package com.jdelorenzo.congressapp.ui.legislators.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.jdelorenzo.congressapp.R;
-import com.jdelorenzo.congressapp.legislators.detail.LegislatorDetailActivity;
-import com.jdelorenzo.congressapp.model.Legislator;
-import com.jdelorenzo.congressapp.model.LegislatorResult;
+import com.jdelorenzo.congressapp.ui.legislators.detail.LegislatorDetailActivity;
+import com.jdelorenzo.congressapp.data.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.LegislatorResult;
 import com.jdelorenzo.congressapp.network.SunlightCongressEndpoint;
 
 import javax.inject.Inject;

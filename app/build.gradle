@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -11,6 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -18,30 +21,43 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:gridlayout-v7:${rootProject.ext.supportLibraryVersion}"
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    implementation "com.android.support:gridlayout-v7:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
-    implementation "com.android.support:support-v4:${rootProject.ext.supportLibraryVersion}"
-    implementation "com.android.support:support-vector-drawable:${rootProject.ext.supportLibraryVersion}"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.retrofitVersion}"
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+    implementation "android.arch.persistence.room:guava:$roomVersion"
 
-    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okHttpVersion}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okHttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
-    implementation "io.reactivex:rxjava:1.1.6"
-    implementation "io.reactivex:rxandroid:1.2.1"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+
     implementation "com.google.dagger:dagger:2.0"
     implementation "com.jakewharton:butterknife:8.4.0"
     implementation "com.airbnb.android:epoxy:1.5.0"
+    api 'com.google.guava:guava:26.0-android'
 
     //annotations
     annotationProcessor "com.google.dagger:dagger-compiler:2.0"
@@ -55,4 +71,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okHttpVersion}"
+    testImplementation "android.arch.persistence.room:testing:${rootProject.ext.roomVersion}"
 }

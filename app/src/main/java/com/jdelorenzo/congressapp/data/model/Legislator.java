@@ -1,16 +1,32 @@
-package com.jdelorenzo.congressapp.model;
+package com.jdelorenzo.congressapp.data.model;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
+
+import com.jdelorenzo.congressapp.data.Converters;
 
 import java.io.Serializable;
 
+
 /** Legislator model.  {@see https://sunlightlabs.github.io/congress/legislators.html} */
+@Entity(tableName="legislators")
+@TypeConverters(Converters.class)
 public class Legislator implements Serializable {
     /** Identifier for this member in various Congressional sources. Originally taken from the
      * Congressional Biographical Directory, but used in many places.
      * If you’re going to pick one ID as a Congressperson’s unique ID, use this. */
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name="legislatorId")
     public String bioguideId;
     /** The date of this legislator’s birthday. */
     public String birthday;
     /** Chamber the member is in. “senate” or “house”. */
+    @NonNull
     public String chamber;
     public String contactForm;
     /** Identifier for this member as it appears on CRP’s OpenSecrets
@@ -32,6 +48,7 @@ public class Legislator implements Serializable {
     /** A list of identifiers for this member as they appear in filings at the
      * Federal Election Commission. {@see http://fec.gov/}*/
     public String[] fecIds;
+    @NonNull
     public String firstName;
     /** First letter of this member’s gender. “M” or “F”. */
     public String gender;
@@ -42,6 +59,7 @@ public class Legislator implements Serializable {
     public String icpsrId;
     /** Whether a legislator is currently holding elected office in Congress. */
     public boolean inOffice;
+    @NonNull
     public String lastName;
     public String leadershipRole;
     /** Identifier for this member as it appears on some of Congress’ data systems
@@ -57,8 +75,11 @@ public class Legislator implements Serializable {
     public String office;
     /** First letter of the party this member belongs to. “R”, “D”, or “I”. */
     public String party;
+    @Ignore
     public boolean isDemocrat() { return party.equals("D"); }
+    @Ignore
     public boolean isRepublican() { return party.equals("R"); }
+    @Ignore
     public boolean isIndependent() { return party.equals("I"); }
     /** Phone number */
     public String phone;
@@ -68,8 +89,10 @@ public class Legislator implements Serializable {
      * Blank for members of the House. */
     public String senateClass;
     /** Two-letter code of the state this member represents. */
+    @NonNull
     public String state;
     /** The full state name of the state this member represents. */
+    @NonNull
     public String stateName;
     /** (Senate only) The seniority of that Senator for that state. “junior” or “senior”. */
     public String stateRank;

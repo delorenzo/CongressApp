@@ -1,9 +1,17 @@
-package com.jdelorenzo.congressapp.model;
+package com.jdelorenzo.congressapp.data.model;
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import io.reactivex.annotations.NonNull;
 
 /** Amendment model.  {@see https://sunlightlabs.github.io/congress/amendments.html} */
+@Entity(tableName = "amendments")
 public class Amendment {
     /** The unique ID for this amendment. Formed from the {@link amendmentType}, {@link number},
      * and {@link congress}. */
+    @NonNull
+    @PrimaryKey
     String amendmentId;
 
     /** The type for this amendment. For the amendment “H.Amdt. 10”, the amendmentType represents

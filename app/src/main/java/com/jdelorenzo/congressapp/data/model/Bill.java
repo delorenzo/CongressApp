@@ -1,14 +1,24 @@
-package com.jdelorenzo.congressapp.model;
+package com.jdelorenzo.congressapp.data.model;
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import io.reactivex.annotations.NonNull;
 
 /** Bill model.  {@see https://sunlightlabs.github.io/congress/bills.html} */
+@Entity(tableName = "bills")
 public class Bill {
     /** The unique ID for this bill. Formed from the {@link billType}, {@link number},
      * and {@link congress}. */
+    @NonNull
+    @PrimaryKey
     String billId;
     /** The type for this bill. For the bill “H.R. 4921”, the type represents the “H.R.” part.
      * Bill types can be: hr, hres, hjres, hconres, s, sres, sjres, sconres. */
+    @NonNull
     String billType;
     /** The number for this bill. For the bill “H.R. 4921”, the number is 4921. */
+    @NonNull
     String number;
     /** The Congress in which this bill was introduced.
      * For example, bills introduced in the “111th Congress” have a congress of 111. */

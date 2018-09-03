@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators.list;
+package com.jdelorenzo.congressapp.ui.legislators.list;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jdelorenzo.congressapp.R;
-import com.jdelorenzo.congressapp.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.Legislator;
 
 import java.util.List;
 import java.util.Locale;

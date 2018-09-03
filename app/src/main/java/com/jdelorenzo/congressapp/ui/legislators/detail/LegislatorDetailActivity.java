@@ -1,19 +1,26 @@
-package com.jdelorenzo.congressapp.legislators.detail;
+package com.jdelorenzo.congressapp.ui.legislators.detail;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.jdelorenzo.congressapp.R;
-import com.jdelorenzo.congressapp.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.Legislator;
+import com.jdelorenzo.congressapp.ui.ViewModelFactory;
+import com.jdelorenzo.congressapp.ui.legislators.LegislatorViewModel;
 
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class LegislatorDetailActivity extends AppCompatActivity implements LegislatorDetailContract.View {
     public static final String EXTRA_LEGISLATOR = "legislator";
@@ -27,12 +34,21 @@ public class LegislatorDetailActivity extends AppCompatActivity implements Legis
     @BindView(R.id.facebook) TextView facebookView;
     @BindView(R.id.twitter) TextView twitterView;
     @BindView(R.id.youtube) TextView youtubeView;
+    private LegislatorViewModel viewModel;
+    private ViewModelFactory viewModelFactory;
+    private final CompositeDisposable disposable = new CompositeDisposable();
+    private final String LOG_TAG = LegislatorDetailActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+        disposable.add(viewModel.getLegislatorName()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(name -> nameView.setText(name),
+                        throwable -> Log.e(LOG_TAG, "Unable to update name", throwable)));
         if (savedInstanceState == null) {
             legislator = (Legislator) getIntent().getSerializableExtra(EXTRA_LEGISLATOR);
             nameView.setText(String.format(Locale.getDefault(),

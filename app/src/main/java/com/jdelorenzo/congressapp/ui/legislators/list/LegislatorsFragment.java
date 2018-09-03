@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.legislators.list;
+package com.jdelorenzo.congressapp.ui.legislators.list;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,8 @@ import android.widget.TextView;
 
 import com.jdelorenzo.congressapp.CongressApplication;
 import com.jdelorenzo.congressapp.R;
-import com.jdelorenzo.congressapp.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.Legislator;
+import com.jdelorenzo.congressapp.ui.legislators.LegislatorViewModel;
 
 import java.util.List;
 

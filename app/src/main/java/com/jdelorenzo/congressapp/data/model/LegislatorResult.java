@@ -1,4 +1,4 @@
-package com.jdelorenzo.congressapp.model;
+package com.jdelorenzo.congressapp.data.model;
 
 import java.util.List;
 

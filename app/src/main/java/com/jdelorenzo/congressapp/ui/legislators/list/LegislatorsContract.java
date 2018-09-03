@@ -1,6 +1,6 @@
-package com.jdelorenzo.congressapp.legislators.list;
+package com.jdelorenzo.congressapp.ui.legislators.list;
 
-import com.jdelorenzo.congressapp.model.Legislator;
+import com.jdelorenzo.congressapp.data.model.Legislator;
 
 import java.util.List;
 
