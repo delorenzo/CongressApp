@@ -23,8 +23,8 @@ class LegislatorAdapter
     extends RecyclerView.Adapter<LegislatorAdapter.LegislatorAdapterViewHolder> {
   private final LegislatorAdapterOnClickHandler clickHandler;
   private List<Legislator> items;
-  private Context context;
-  private View emptyView;
+  private final Context context;
+  private final View emptyView;
 
   LegislatorAdapter(Context context, View emptyView, LegislatorAdapterOnClickHandler handler) {
     this.context = context;

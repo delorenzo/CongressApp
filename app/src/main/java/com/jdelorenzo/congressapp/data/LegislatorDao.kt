@@ -1,5 +1,6 @@
 package com.jdelorenzo.congressapp.data
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -16,11 +17,17 @@ import io.reactivex.Flowable
 interface LegislatorDao {
 
     /**
-     * Get the legislator from the table.
-     * @return
+     * Get legislators from the table.
+     * @return LiveData<List<Legislator>>
      */
     @get:Query("SELECT * FROM Legislators")
-    val legislator: Flowable<Legislator>
+    val legislators: LiveData<List<Legislator>>
+
+    /**
+     * Get legislators matching a query parameter
+     */
+    @Query("SELECT * FROM legislators WHERE lastName = :lastName")
+    fun legislatorsWithName(lastName: String): LiveData<List<Legislator>>
 
     /**
      * Insert a legislator into the database.
@@ -29,6 +36,5 @@ interface LegislatorDao {
      */
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertLegislator(legislator: Legislator)
-
 
 }

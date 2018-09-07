@@ -6,24 +6,27 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.jdelorenzo.congressapp.data.LegislatorDao;
+import com.jdelorenzo.congressapp.data.model.Bill;
+import com.jdelorenzo.congressapp.data.model.Committee;
+import com.jdelorenzo.congressapp.data.model.District;
 import com.jdelorenzo.congressapp.data.model.Legislator;
 
 /** The Room database that contains the Legislator table */
 @Database(
-    entities = {Legislator.class},
+    entities = {Legislator.class, Bill.class, Committee.class, District.class},
     version = 1)
-public abstract class LegislatorsDatabase extends RoomDatabase {
-  private static final String LEGISLATOR_DATABASE_NAME = "Legislator.db";
-  private static volatile LegislatorsDatabase INSTANCE;
+public abstract class CongressDatabase extends RoomDatabase {
+  private static final String LEGISLATOR_DATABASE_NAME = "Congress.db";
+  private static volatile CongressDatabase INSTANCE;
 
-  public static LegislatorsDatabase getInstance(Context context) {
+  public static CongressDatabase getInstance(Context context) {
     if (INSTANCE == null) {
-      synchronized (LegislatorsDatabase.class) {
+      synchronized (CongressDatabase.class) {
         if (INSTANCE == null) {
           INSTANCE =
               Room.databaseBuilder(
                       context.getApplicationContext(),
-                      LegislatorsDatabase.class,
+                      CongressDatabase.class,
                       LEGISLATOR_DATABASE_NAME)
                   .build();
         }
